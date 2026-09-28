@@ -84,7 +84,7 @@ while true; do
 	QTD_ARQS_VMET=$(find $DIRBASEVMET/ -type f | wc -l)
 
 	if [ "$QTD_ARQS_VMET" -gt 0 ]; then
-    	$RSYNC -avzr --no-t --remove-source-files --exclude-from=/home/muran/exclude.txt --files-from=<(ls $DIRBASEVMET/ 2>/dev/null | tail -n850) $DIRBASEVMET/ $DIRRSYNCVMET 
+    	$RSYNC -avzr --timeout=60 --contimeout=30 --no-t --remove-source-files --exclude-from=/home/muran/exclude.txt --files-from=<(ls $DIRBASEVMET/ 2>/dev/null | tail -n850) $DIRBASEVMET/ $DIRRSYNCVMET 
 	fi
 	
 	# SCAN XPPI
@@ -134,7 +134,7 @@ while true; do
 		QTD_ARQS_XPPI=$(find $DIRBASEXPPI/ -type f | wc -l)
 
 	if [ "$QTD_ARQS_XPPI" -gt 0 ]; then
-    	$RSYNC -avzr --no-t --remove-source-files --exclude-from=/home/muran/exclude.txt --files-from=<(ls $DIRBASEXPPI/ 2>/dev/null | tail -n850) $DIRBASEXPPI/ $DIRRSYNCXPPI 
+    	$RSYNC -avzr --timeout=60 --contimeout=30 --no-t --remove-source-files --exclude-from=/home/muran/exclude.txt --files-from=<(ls $DIRBASEXPPI/ 2>/dev/null | tail -n850) $DIRBASEXPPI/ $DIRRSYNCXPPI 
 	fi
 
 	echo "invalido={$INVALIDO}"
