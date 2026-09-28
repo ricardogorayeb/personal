@@ -1,14 +1,13 @@
 sed -Ei 's|http(://sistema.hom.mcom.gov.br)|https\1|g' *
 
-ldapsearch -H ldap://mcom.gov.br:389/ -x -W -D "MCOM\svc_bind_sistemas" -b "OU=MCOM,dc=mcom,dc=gov,dc=br" "(sAMAccountName=jair.fernand
-es)"
+ldapsearch -H ldap://ldap-server:389/ -x -W -D "user" -b "ldap bind" "(sAMAccountName=)"
 
 sed -i -e 's/-Xms2g -Xmx2g/-Xms3g -Xmx3g/' bin/graylogctl
 
 
 
 #Remote local port forwarding
-ssh -L 8000:172.22.42.66:4039 root@172.22.42.66
+ssh -L 8000:ip:4039 root@ip
 
 puppet agent --configprint all|grep -i runinterval (Puppet agent run interval on clients)
 
